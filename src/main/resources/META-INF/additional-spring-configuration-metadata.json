@@ -1,0 +1,11 @@
+{
+  "properties": [
+    {
+      "name": "DriverManager.getConnection("
+      jdbc
+      ",
+      "type": "java.lang.String",
+      "description": "Description for DriverManager.getConnection("
+    jdbc.
+    "}}
+] }

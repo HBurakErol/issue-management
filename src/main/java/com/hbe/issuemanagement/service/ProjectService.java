@@ -17,11 +17,13 @@ public interface ProjectService {
     ProjectDto getById(Long id);
     ProjectDto getByProjectCode(String projectCode);
     Boolean delete(ProjectDto project);
+
     List<ProjectDto> getByProjectCodeContains(String projectCode);
 
     TPage<ProjectDto> getAllPageable(Pageable pageable);
 
 
+    ProjectDto update(Long id, ProjectDto project);
 
 }
 

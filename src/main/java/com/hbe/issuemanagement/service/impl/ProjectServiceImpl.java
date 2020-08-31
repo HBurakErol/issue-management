@@ -10,10 +10,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.hbe.issuemanagement.dto.ProjectDto;
-import com.hbe.issuemanagement.util.TPage;
-import org.modelmapper.ModelMapper;
-import java.util.Arrays;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,10 +48,7 @@ public class ProjectServiceImpl  implements ProjectService {
         return null;
     }
 
-    @Override
-    public Boolean delete(ProjectDto project) {
-        return null;
-    }
+
 
     @Override
     public List<ProjectDto> getByProjectCodeContains(String projectCode) {
@@ -72,4 +65,64 @@ public class ProjectServiceImpl  implements ProjectService {
         return respnose;
 
     }
+
+    @Override
+    public Boolean delete(ProjectDto project){return null;};
+
+
+    public Boolean delete(Long id) {
+        projectRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public ProjectDto update(Long id, ProjectDto project) {
+        Project projectDb= projectRepository.getOne(id);
+        if(projectDb == null)
+            throw new IllegalArgumentException("Project Does Not Exist ID:" + id);
+
+        Project projectCheck = projectRepository.getByProjectCodeAndIdNot(project.getProjectCode(),id);
+        if(projectCheck!=null)
+            throw new IllegalArgumentException("Project Code Already Exist");
+
+        projectDb.setProjectCode(project.getProjectCode());
+        projectDb.setProjectName(project.getProjectName());
+
+        projectRepository.save(projectDb);
+        return modelMapper.map(projectDb, ProjectDto.class);
+    }
+
+
+
+   /* @Override
+    public ProjectDto update(Long id, ProjectDto project) {
+        Project projectDb = projectRepository.getOne(id);
+        if(projectDb== null )
+            throw new IllegalArgumentException("project Does Not exist ID: "+ id);
+
+
+        Project projectCheck = projectRepository.getByProjectCode(project.getProjectCode());
+        if (projectCheck!=null && projectCheck.getId() != projectDb.getId())
+            throw new IllegalArgumentException("project code already exist ");
+
+        projectDb.setProjectCode(project.getProjectCode());
+        projectDb.setProjectName(project.getProjectName());
+        projectRepository.save(projectDb);
+        return modelMapper.map(projectDb, ProjectDto.class);
+    }*/
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
