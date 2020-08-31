@@ -1,8 +1,8 @@
 package com.hbe.issuemanagement.service;
 
+import com.hbe.issuemanagement.dto.ProjectDto;
 import com.hbe.issuemanagement.entity.Project;
-import com.hbe.issuemanagement.entity.User;
-import org.springframework.data.domain.Page;
+import com.hbe.issuemanagement.util.TPage;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -10,12 +10,14 @@ import java.util.List;
 
 public interface ProjectService {
 
-    Project save(Project Project);
-    Project getById(Long id);
-    Boolean delete(Project project);
-    List<Project> getByProjectCodeContains(String projectCode);
-    List<Project> getByProjectCode(String projectCode);
-    Page<Project> getAllPageable(Pageable pageable);
+
+    ProjectDto save(ProjectDto project);
+
+    ProjectDto getById(Long id);
+    Boolean delete(ProjectDto project);
+    List<ProjectDto> getByProjectCodeContains(String projectCode);
+    ProjectDto getByProjectCode(String projectCode);
+    TPage<ProjectDto> getAllPageable(Pageable pageable);
 
 
 
