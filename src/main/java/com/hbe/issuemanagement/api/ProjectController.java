@@ -3,12 +3,13 @@ package com.hbe.issuemanagement.api;
 
 import com.hbe.issuemanagement.dto.ProjectDto;
 import com.hbe.issuemanagement.service.impl.ProjectServiceImpl;
+import com.hbe.issuemanagement.util.ApiPaths;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping(ApiPaths.ProjectCtrl.CTRL)
 public class ProjectController {
     private ProjectServiceImpl projectServiceImpl;
 
