@@ -15,6 +15,8 @@ import java.util.List;
 @EqualsAndHashCode
 public class User extends BaseEntity{
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -34,6 +36,14 @@ public class User extends BaseEntity{
     @JoinColumn(name = "assignee_user_id")
     @OneToMany(fetch = FetchType.LAZY)
     private List<Issue> issues;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;

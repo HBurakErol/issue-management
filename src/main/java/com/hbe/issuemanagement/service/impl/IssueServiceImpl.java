@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-public class IssueServiceImpl implements IssueService {
+public class IssueServiceImpl implements IssueService  {
 
     private final IssueRepository issueRepository;
     private final ModelMapper modelMapper;
 
-    public IssueServiceImpl(IssueRepository issueRepository, ModelMapper modelMapper){
+    public IssueServiceImpl(IssueRepository issueRepository, ModelMapper modelMapper) {
         this.issueRepository=issueRepository;
         this.modelMapper=modelMapper;
     }
@@ -27,7 +27,7 @@ public class IssueServiceImpl implements IssueService {
     @Override
     public IssueDto save(IssueDto issue) {
         //Bussiness Logic
-        if(issue.getDate()==null){
+        if (issue.getDate() == null) {
             throw new IllegalArgumentException("Issue date cannot be null");
         }
         else {
@@ -42,22 +42,23 @@ public class IssueServiceImpl implements IssueService {
 
     @Override
     public IssueDto getById(Long id) {
-        return null;
+        Issue issue = issueRepository.getOne(id);
+        return modelMapper.map(issue, IssueDto.class);
     }
 
     @Override
     public TPage<IssueDto> getAllPageable(Pageable pageable) {
 
-        Page<Issue> data=issueRepository.findAll(pageable);
-        TPage page=new TPage<IssueDto>();
-        IssueDto[] dtos= modelMapper.map(data.getContent(),IssueDto[].class);
-        page.setStat(data, Arrays.asList(dtos));
-        return page;
+        Page<Issue> data = issueRepository.findAll(pageable);
+        TPage<IssueDto> respnose = new TPage<IssueDto>();
+        respnose.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), IssueDto[].class)));
+        return respnose;
     }
 
     @Override
     public Boolean delete(IssueDto issue) {
-        return null;
+        issueRepository.deleteById(issue.getId());
+        return true;
     }
 }
 
