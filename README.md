@@ -8,3 +8,4 @@ Technologies in the project;
 - PostgreSql, H2 Datebase
 - Postman
 - Github
+- Swagger2
