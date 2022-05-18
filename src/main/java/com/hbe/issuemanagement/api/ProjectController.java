@@ -1,11 +1,13 @@
 package com.hbe.issuemanagement.api;
 
-
 import com.hbe.issuemanagement.dto.ProjectDto;
 import com.hbe.issuemanagement.service.impl.ProjectServiceImpl;
 import com.hbe.issuemanagement.util.ApiPaths;
+import com.hbe.issuemanagement.util.TPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(ApiPaths.ProjectCtrl.CTRL)
 @Api(value = "ApiPaths.ProjectCtrl.CTRL",description = "Project APIs")
+@Slf4j
 public class ProjectController {
     private ProjectServiceImpl projectServiceImpl;
 
@@ -21,9 +24,19 @@ public class ProjectController {
     }
 
 
+    @GetMapping("/pagination")
+    @ApiOperation(value = "Get By Pagination Operation", response = ProjectDto.class)
+    public ResponseEntity<TPage<ProjectDto>> getAllByPagination(Pageable pageable){
+        TPage<ProjectDto> data=projectServiceImpl.getAllPageable(pageable);
+        return ResponseEntity.ok(data);
+    }
+
     @GetMapping("/{id}")
     @ApiOperation(value = "Get By Id Operation", response = ProjectDto.class)
     public ResponseEntity<ProjectDto> getById(@PathVariable(value = "id",required = true) Long id){
+        log.info("ProjectController-> GetById");
+        log.debug("ProjectController-> GetById -> PARAM"+id);
+
         ProjectDto projectDto = projectServiceImpl.getById(id);
         return ResponseEntity.ok(projectDto);
     }
@@ -52,26 +65,4 @@ public class ProjectController {
         return ResponseEntity.ok(projectServiceImpl.delete(id));
     }
 
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

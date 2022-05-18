@@ -20,7 +20,7 @@ public class TPage<T> {
         this.sort=page.getSort();
         this.totalPages=page.getTotalPages();
         this.totalElements=page.getTotalElements();
-        //this.content=list;
+        this.content=list;
 
     }
 }

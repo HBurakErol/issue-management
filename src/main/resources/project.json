@@ -1,0 +1,17 @@
+[
+  {
+    "_class": "com.hbe.issuemanagement.entity.Project",
+    "projectCode": "IM5",
+    "projectName": "Issue Management Project"
+  },
+  {
+    "_class": "com.hbe.issuemanagement.entity.Project",
+    "projectCode": "ERP-S5",
+    "projectName": "ERP Project for Sales"
+  },
+  {
+    "_class": "com.hbe.issuemanagement.entity.Project",
+    "projectCode": "CRM-S5",
+    "projectName": "CRM Project for Sales"
+  }
+]

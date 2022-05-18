@@ -1,11 +1,8 @@
 package com.hbe.issuemanagement.entity;
-
-
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-
 @Entity
 @Table(name = "users")
 @Data
@@ -14,8 +11,6 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 public class User extends BaseEntity{
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

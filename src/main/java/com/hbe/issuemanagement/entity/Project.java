@@ -1,10 +1,7 @@
 package com.hbe.issuemanagement.entity;
-
 import lombok.*;
 
 import javax.persistence.*;
-
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,7 +24,6 @@ public class  Project extends BaseEntity {
     @JoinColumn(name = "manager_user_id")
     @ManyToOne(optional = true,fetch = FetchType.LAZY)
     private User manager;
-
 
 
     public Long getId() {
