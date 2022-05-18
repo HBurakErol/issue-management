@@ -1,5 +1,5 @@
 # Spring Boot Project
-## issue-management
+## Spring Boot BackEnd Project
 
 Technologies in the project;
 - Spring Boot
